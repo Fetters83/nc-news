@@ -1,14 +1,12 @@
-import {useState,useEffect} from 'react'
-
 function Header(){
 
    
 
     
     return (
-        <div>
-    <h1>Welcome to NC-NEWS</h1>
-        </div>
+        <section className="header">
+    <h1>NC-News</h1>
+        </section>
     )
 
 }

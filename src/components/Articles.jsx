@@ -1,4 +1,4 @@
-import { fetchAllArticles } from "../../api";
+import { fetchAllArticles} from "../../api";
 import {useState,useEffect} from 'react';
 import ArticlesCard from "./ArticlesCard"; 
 import styles from "../css/Articles.module.css"
@@ -6,30 +6,36 @@ import styles from "../css/Articles.module.css"
 
 
 
-function Articles({setCurrentRoute}) {
+function Articles() {
 
-  useEffect(() => setCurrentRoute(window.location.href), []);
+      const [articles,setArticles] = useState([])
+      const [isLoading, setIsLoading] = useState(true)
 
-    const [allArticles,setAllArticles] = useState([])
-
+   
     useEffect(()=>{
-        fetchAllArticles().then(({data})=>{
-            setAllArticles(data.articles)
-            
-        })
-    },[allArticles])
+      fetchAllArticles().then(({articles})=>{
+      setArticles(articles)
+       setIsLoading(false)
+      })
+    },[isLoading])
 
-  
-
+ 
     
+     if(isLoading) return <p>Loading....</p> 
      return (
     <div>
       <section className={styles.articlearea}>
         <ul>
-         <ArticlesCard allArticles={allArticles}/>
-        </ul>
+          {articles.map((article)=>{
+            const convertDate = new Date(article.created_at)
+            const newDate = convertDate.toLocaleDateString('en-gb')
+            return  <ArticlesCard article={article} key={article.article_id} newDate={newDate}/>
+          })}
+         
+              </ul>
       </section>
     </div>
+     
   );
 }
 
