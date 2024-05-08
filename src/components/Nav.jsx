@@ -9,10 +9,10 @@ function Nav(){
 
 
     return(<>
-    <section className={styles.navbar}>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/articles">Articles</Link>
+    <section  >
+      <nav className={styles.navbar} >
+        <Link className={styles.navelements} to="/">Home</Link>
+        <Link  className={styles.navelements} to="/articles">Articles</Link>
                </nav>
 
     </section>
