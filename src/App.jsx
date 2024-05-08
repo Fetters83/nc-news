@@ -5,27 +5,26 @@ import Articles from "./components/Articles";
 import "./App.css";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
+import SingleArticle from "./components/SingleArticle";
+import Home from "./components/Home";
+
 
 
 function App() {
-  const [currentRoute, setCurrentRoute] = useState(window.location.href);
+ 
   return (
 	
-    <main onLoad={() => setCurrentRoute(window.location.href)}>
-	
+    <main >
+
   <Header/>
-  <Nav/>
+    <Nav/>
       <Routes>
-        <Route
-          path="/"
-          element={<Articles setCurrentRoute={setCurrentRoute} />}
-        />
-        </Routes>
-        <Nav/>
-       
-   
-	
-    </main>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/articles" element={<Articles />}/>
+        <Route path="/articles/:article_id" element={<SingleArticle />}/>
+       </Routes>
+            
+   	 </main>
   );
 }
 

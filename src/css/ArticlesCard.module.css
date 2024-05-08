@@ -12,9 +12,10 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 img{
-    width: 200px;
+    padding: 0rem;
+    width: 600px;
     height: 300px;
-    object-fit: contain;
+    object-fit: cover;
 }
 .cardspan{
     font-weight: bold;
