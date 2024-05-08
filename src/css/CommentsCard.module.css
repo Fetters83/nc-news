@@ -1,0 +1,10 @@
+.comment__card{
+
+    border-style: solid;
+    border-color: cornflowerblue;
+}
+
+.comment__body{
+
+    font-size: small;
+}

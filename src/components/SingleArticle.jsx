@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchArticle } from "../../api";
 import { useParams } from "react-router-dom";
 import styles from "../css/SingleArticle.module.css";
+import CommentsCard from "./CommentsCard";
 
 function SingleArticle() {
   const [singleArticle, setSingleArticle] = useState({});
@@ -37,12 +38,12 @@ function SingleArticle() {
               src={singleArticle.article_img_url}
               alt={`an image for ${singleArticle.title} by ${singleArticle.author}`}
             />
-            <p className={styles.cardspan}> {singleArticle.topic}</p>
             <p>{singleArticle.body}</p>
             <p>
               <span className={styles.cardspan}>Votes</span>{" "}
               {singleArticle.votes}
             </p>
+            <CommentsCard article_id={article_id}/>
           </li>
         </ul>
       </section>
