@@ -1,0 +1,23 @@
+.vote_box{
+    font-size: 30px;
+    font-weight: bold;
+   
+
+    border-width: thin;
+                                                                        
+}         
+
+#upvote_box{
+    color: rgb(96, 209, 96);
+}
+
+#downvote_box{
+
+    color: rgb(223, 109, 75);
+    font-size: 35px;
+
+}
+
+.vote_text{
+    font-weight: bolder;
+}
