@@ -15,11 +15,10 @@ function CommentsCard (props){
         }).catch((err)=>{
            setIsError(true)
         })
-    },[comments])
+    },[])
         
-    console.log(comments)
 if(isError) return <p>No comments yet...</p>
-return(<section key={article_id}  className={styles.comment__card}>
+return(<section key={`${article_id}-001`} className={styles.comment__card}>
     {comments.map((comment)=>{
 
 const convertDate = new Date(comment.created_at)

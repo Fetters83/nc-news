@@ -3,6 +3,7 @@ import { fetchArticle } from "../../api";
 import { useParams } from "react-router-dom";
 import styles from "../css/SingleArticle.module.css";
 import CommentsCard from "./CommentsCard";
+import Vote from "./Vote";
 
 function SingleArticle() {
   const [singleArticle, setSingleArticle] = useState({});
@@ -15,7 +16,7 @@ function SingleArticle() {
       setSingleArticle(articles[0]);
       setIsLoading(false)
     });
-  }, [isLoading]);
+  }, [isLoading],[singleArticle]);
 
 
   const convertDate = new Date(singleArticle.created_at)
@@ -43,8 +44,9 @@ function SingleArticle() {
               <span className={styles.cardspan}>Votes</span>{" "}
               {singleArticle.votes}
             </p>
-            <CommentsCard article_id={article_id}/>
-          </li>
+            <Vote article_id={article_id} setSingleArticle={setSingleArticle}/>
+            <CommentsCard key={article_id}article_id={article_id}/>
+            </li>
         </ul>
       </section>
     </div>
