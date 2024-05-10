@@ -62,7 +62,7 @@ function PostComment({article_id,username,comments,setComments}){
             <label htmlFor="comment_box">Submit a comment....</label>
             <br />
             <br />
-            <textarea id="comment_box" rows='6' cols='70'></textarea>
+            <textarea id="comment_box" rows='6' cols='68'></textarea>
             <br />
             <br />
             {(isSubmittingBlankForm && <p className={styles.enter_valid_text_warning}>You must enter some valid text before you can submit anything.....</p> )}

@@ -46,10 +46,21 @@ function postCommentByArticleId(article_id,username,commentBody){
     
   })
 }
+
+function deleteCommentByCommentId(comment_id){
+  console.log(typeof comment_id)
+  return axios
+  .delete(`https://be-backend-project-nc-news.onrender.com/api/comments/${comment_id}`).then(({data})=>{
+      return data
+  })
+}
+
+
 export {
   fetchAllArticles,
   fetchArticle,
   fetchCommentByArticleId,
   postVoteByArticleId,
-  postCommentByArticleId
+  postCommentByArticleId,
+  deleteCommentByCommentId
 };
