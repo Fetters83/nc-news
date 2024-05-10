@@ -38,9 +38,18 @@ function postVoteByArticleId(article_id, voteToPost) {
       return updatedArticleVoteCount;
     });
 }
+
+function postCommentByArticleId(article_id,username,commentBody){
+ return axios
+  .post(`https://be-backend-project-nc-news.onrender.com/api/articles/${article_id}/comments`,{username:username,body:commentBody}).then(({data:{comment}})=>{
+    return comment
+    
+  })
+}
 export {
   fetchAllArticles,
   fetchArticle,
   fetchCommentByArticleId,
   postVoteByArticleId,
+  postCommentByArticleId
 };
