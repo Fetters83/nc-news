@@ -1,6 +1,7 @@
 import axios from "axios";
 
 function fetchAllArticles() {
+ 
   return axios
     .get(`https://be-backend-project-nc-news.onrender.com/api/articles`)
     .then(({ data }) => {
@@ -46,10 +47,40 @@ function postCommentByArticleId(article_id,username,commentBody){
     
   })
 }
+
+function deleteCommentByCommentId(comment_id){
+   return axios
+  .delete(`https://be-backend-project-nc-news.onrender.com/api/comments/${comment_id}`).then(({data})=>{
+      return data
+  })
+}
+
+function fetchTopics(){
+
+  return axios
+  .get(`https://be-backend-project-nc-news.onrender.com/api/topics`).then(({data:{topics}})=>{
+     return topics
+  })
+
+}
+
+
+function fetchAllArticlesByTopic(sortByQuery) {
+
+  return axios
+    .get(`https://be-backend-project-nc-news.onrender.com/api/articles?topic=${sortByQuery}`)
+    .then(({ data }) => {
+      return data;
+    });
+}
+
 export {
   fetchAllArticles,
   fetchArticle,
   fetchCommentByArticleId,
   postVoteByArticleId,
-  postCommentByArticleId
+  postCommentByArticleId,
+  deleteCommentByCommentId,
+  fetchTopics,
+  fetchAllArticlesByTopic
 };

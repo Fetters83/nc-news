@@ -6,5 +6,21 @@
 
 .comment__body{
 
-    font-size: small;
+    font-size:medium;
+    
+}
+
+#deleting_comment{
+     color: crimson;
+     font-weight: bolder;
+}
+
+.single_comment_card{
+
+    background-color: rgb(186, 200, 201);
+}
+
+#author_text{
+
+    font-weight: bold;
 }

@@ -24,7 +24,7 @@ function ArticlesCard(props) {
                 <span className={styles.cardspan}>Topic: </span>
                 {article.topic} {newDate}
               </p>
-              <h2>{article.title}</h2>
+              <p id={styles.title}>{article.title}</p>
               <p>
                 <span className={styles.cardspan}>Created by: </span>
                 {article.author}

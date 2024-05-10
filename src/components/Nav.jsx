@@ -13,6 +13,7 @@ function Nav(){
       <nav className={styles.navbar} >
         <Link className={styles.navelements} to="/">Home</Link>
         <Link  className={styles.navelements} to="/articles">Articles</Link>
+        <Link  className={styles.navelements} to="/topics">Topics</Link>
                </nav>
 
     </section>
