@@ -5,25 +5,27 @@ import styles from "../css/SingleArticle.module.css";
 import CommentsCard from "./CommentsCard";
 import Vote from "./Vote";
 
-function SingleArticle() {
-  const [singleArticle, setSingleArticle] = useState({});
-  const [isLoading, setIsLoading] = useState(true)
 
+function SingleArticle({ username }) {
+  const [singleArticle, setSingleArticle] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const { article_id } = useParams();
 
-  useEffect(() => {
-    fetchArticle(article_id).then(({ articles }) => {
-      setSingleArticle(articles[0]);
-      setIsLoading(false)
-    });
-  }, [isLoading],[singleArticle]);
+  useEffect(
+    () => {
+      fetchArticle(article_id).then(({ articles }) => {
+        setSingleArticle(articles[0]);
+        setIsLoading(false);
+      });
+    },
+    [isLoading],
+    [singleArticle]
+  );
 
+  const convertDate = new Date(singleArticle.created_at);
+  const newDate = convertDate.toLocaleDateString("en-gb");
 
-  const convertDate = new Date(singleArticle.created_at)
-  const newDate = convertDate.toLocaleDateString('en-gb')
-
- 
-  if(isLoading) return <p>Loading...</p>
+  if (isLoading) return <p>Loading...</p>;
   return (
     <div>
       <section className={styles.articlearea}>
@@ -44,9 +46,13 @@ function SingleArticle() {
               <span className={styles.cardspan}>Votes</span>{" "}
               {singleArticle.votes}
             </p>
-            <Vote article_id={article_id} setSingleArticle={setSingleArticle}/>
-            <CommentsCard key={article_id}article_id={article_id}/>
-            </li>
+            <Vote article_id={article_id} setSingleArticle={setSingleArticle} />
+            <CommentsCard
+              key={article_id}
+              article_id={article_id}
+              username={username}
+            />
+          </li>
         </ul>
       </section>
     </div>
