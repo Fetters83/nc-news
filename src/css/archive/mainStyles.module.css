@@ -1,0 +1,171 @@
+
+
+ :root{
+    --primary:rgba(0,0,0,0.2);
+    --secondary:rgba(128,128,128,0.2);
+  
+  } 
+  
+  
+  
+/*   body,main,li,p,span,nav,ul,a,button{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+   }
+   li{
+    list-style-type: none;
+   }  
+  
+ 
+   body{
+    font-family: 'Roboto Medium';
+ 
+      
+   }
+
+   .headerSection{
+    margin:10px;
+    padding: 10px;
+    color: darkred;
+
+   }
+
+   .welcomeSection{
+    margin-top: 50px;
+    margin-left: 150px;
+    padding:20px;
+   }
+
+  .welcome{
+    margin: 5px;
+    padding:20px;
+    font-size: 1.5em;
+    display: inline;
+    text-align: center;
+  }
+
+  .nav_container {
+    height: 50px;
+  }
+  
+  .nav_sticky {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: center;
+    font-size: 1.1em;
+    background-color: #f8f9fa; 
+    padding: 10px 70px; 
+
+  }
+  
+  .nav_item {
+    text-decoration: none;
+    color: #333; 
+    padding: 10px; 
+  }
+  
+
+  .welcome_img{
+    margin-top: 100px;
+    max-width: fit-content;   
+   } 
+
+
+.mobile_filter_btn{
+
+ width:100%;
+ height: 40px;
+ font-size: 1.2em;
+ border-radius: 10px;
+ border-style: solid;
+ border-color: var(--secondary);
+ margin-top: 20px;
+ margin-bottom: 30px;
+
+
+}
+
+.popup{
+  position: fixed;
+  top:75%;
+  left:0;
+  width:100%;
+  height:100vh;
+ background-color: white;
+border-style: solid;
+border-color: var(--secondary);
+border-width: 5px;
+border-radius: 1%;
+
+
+}
+
+
+ .popup_close_btn{
+  position:absolute;
+  top:16px;
+  right:16px;
+} 
+
+.popup_radio_btns_container label{
+  display: block;  
+  margin-top: 5px;
+  margin-bottom: 2px;  
+  margin-left: 8px;
+  padding-top: 20px;
+}
+
+.popup_radio_btns_container input[type="radio"]{
+  margin-right: 20px;
+}
+
+
+.articles_grid{
+
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  padding: 10px 70px; 
+  
+ }
+
+ img{
+  width:100px
+ } */
+ 
+   /*fonts*/
+
+/*    @font-face{
+    font-family: 'Roboto Medium';
+    src: url('../assets/fonts/Roboto-Medium.ttf');
+   }
+ */
+  
+  
+   /*Mobile Styles*/
+  
+  
+  
+  /*Small tablet styles*/
+   
+/*   @media screen and (min-width:620px) {
+    
+  }  */
+  
+  /* Large tablets and laptops styles */
+  
+/*   @media screen and (min-width:960px) {
+    
+  }  */
+  
+  /*Desktop styles*/
+    
+/*   @media screen and (min-width:1200px) {
+    
+  }  */
+  
+  
+  /***************************************************************************************************************/
+
+  

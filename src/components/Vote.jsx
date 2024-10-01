@@ -1,54 +1,61 @@
 import {useState,useEffect} from 'react'
-import { postVoteByArticleId } from '../../api'
+import { fetchArticleVotesByUserId, postVoteByArticleId } from '../../api'
 import styles from '../css/Vote.module.css'
+import unliked from '../assets/images/unliked.svg'
+import liked from '../assets/images/liked.svg'
 
-function Vote (props){
-
-const{article_id} = props
-const{setSingleArticle} = props
-
+ function Vote ({article_id,votes,username}){
 
 
-const [voteCount, setVoteCount] = useState()
-const [voteActivated, setVoteActivated] = useState(false)
-const [vote, setVote] = useState({})
 
-useEffect(()=>{
-
-if(voteActivated){
-
-    postVoteByArticleId(article_id,voteCount).then((updatedArticleVote)=>{
-        setSingleArticle(updatedArticleVote)
-        setVoteActivated(false)
-    }).catch(()=>{
-
-        alert('There has been an error processing your request...please try again later')
+const [like,setLike] = useState(false)
+const [voteCount,setVoteCount] = useState(votes)
+const [isVoting,setIsVoting] = useState(false)
 
 
+
+ useEffect(()=>{
+
+    fetchArticleVotesByUserId(username,article_id).then((result)=>{
+        setLike(result)
+      
     })
-}
-
-},[voteCount])
+  }, [username,article_id])   
 
 
-function handleVoteChange(voteChange){
+function handleVoteChange(){
+    if(isVoting) return;
+    const voteIncrement = like ?-1:1
+    
+    setVoteCount((currentVotes)=> currentVotes + voteIncrement);
+    setLike(!like);
+    setIsVoting(true);
 
-    setVoteActivated(true)
-    setVoteCount(voteChange)
+    postVoteByArticleId(article_id,voteIncrement,username).then(()=>{
+      setIsVoting(false)
+    }).catch((err)=>{
+      alert('THere has been an error processing you request..please try again later')
+      setVoteCount((currentVotes)=> currentVotes - voteIncrement);
+      setLike(like);
+      setIsVoting(false)
+    })
+
 
 }
 
 return(
-    <section>
-
-        <p className={styles.vote_text}>Click below to like this Article!:</p>
-        <p onClick={()=>{handleVoteChange(1)}}><span className={styles.vote_box} id={styles.upvote_box}>+</span></p>
-        <p className={styles.vote_text}>Click below to remove your like:</p>
-        <p onClick={()=>{handleVoteChange(-1)}}><span className={styles.vote_box} id={styles.downvote_box} >-</span></p>
+  
+    <section className={styles.vote_container}>
+      <p> {console.log(voteCount)}
+              <span >votes </span>
+              <span >{voteCount}</span>
+            </p>
+        <p >Click below to like this Article:</p>
+       <img src={ like? liked: unliked} alt={ like? 'Liked Icon': 'Unliked Icon'} onClick={handleVoteChange}/>
     </section>
 )
 
+ }
 
-}
 
 export default Vote

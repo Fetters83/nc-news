@@ -1,37 +1,38 @@
-import { useState } from "react";
 import { Routes, Route, useHref } from "react-router";
 import Articles from "./components/Articles";
-
+import SingleArticle from "./components/SingleArticle"
 import "./App.css";
-import Header from "./components/Header";
 import Nav from "./components/Nav";
-import SingleArticle from "./components/SingleArticle";
-import Home from "./components/Home";
-import Topics from "./components/Topics";
+import { useSearchParams } from "react-router-dom";
+import MobileSideNav from "./components/MobileSideNav";
+import { useEffect, useState } from "react";
+
 
 
 
 function App() {
 
-  const username= 'jessjelly'
-  const [topicQuery,setTopicQuery] = useState('')
+  const [searchParams,setSearchParams] = useSearchParams();
+  const [mobileSideNav,setMobileSideNav] = useState(false);
+  const username = 'tickle122'
+
+  useEffect(()=>{
+
+  },[searchParams,mobileSideNav])
 
  
   return (
 	
-    <main >
+    <div className="App">
 
-  <Header/>
-    <Nav/>
+    <MobileSideNav mobileSideNav={mobileSideNav} setMobileSideNav={setMobileSideNav} setSearchParams={setSearchParams}/>
+    <Nav setSearchParams={setSearchParams} setMobileSideNav={setMobileSideNav}/>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/articles" element={<Articles topicQuery={topicQuery}/>}/>
-        <Route path="/articles/:article_id" element={<SingleArticle username={username}/>}/>
-        <Route path="/topics" element={<Topics setTopicQuery={setTopicQuery}/>}/>
-        <Route path={`/articles/topic=${topicQuery}`} element={<Articles topicQuery={topicQuery} />}/> *
-       </Routes>
+        <Route path="/" element={<Articles searchParams={searchParams} username={username}/>}  />
+        <Route path="/articles/:article_id" element={<SingleArticle username={username}/>}  />
+       </Routes> 
             
-   	 </main>
+   	 </div>
   );
 }
 

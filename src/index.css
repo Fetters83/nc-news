@@ -1,0 +1,49 @@
+
+/* Reset */
+
+body, p, ul, li, a{
+    margin:0;
+    padding: 0;
+    text-decoration: none;
+  }
+  a{
+    color: white;
+  }
+  
+  li{
+    list-style-type: none;
+  }
+
+  /*Base Styles*/
+
+  * {
+    box-sizing: border-box;
+  }
+
+  :root{
+    --primary:black;
+    --secondary:white;
+  
+  }
+
+  body{
+    width:100%;
+    overflow-x: hidden;
+  }
+
+  /*Fonts*/
+  @font-face {
+    font-family: 'Roboto Medium' ;
+    src: url('./assets/fonts/Roboto-Medium.ttf');
+  }
+
+  @font-face {
+    font-family: 'NewsCycle' ;
+    src: url('./assets/fonts/NewsCycle.ttf');
+  }
+
+  body{
+
+    font-family: 'NewsCycle';
+    font-weight: bold;
+  }

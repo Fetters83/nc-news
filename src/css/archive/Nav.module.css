@@ -1,0 +1,113 @@
+/* .nav_container{
+    font-family: 'Roboto-Medium';
+    text-decoration: none;
+    height: 50px;
+    font-weight: bold;
+    z-index: -1;
+}
+.inner_nav_container{ 
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 5px;
+    text-align: center; 
+    font-size: 1.1em;
+    background-color: #f8f9fa;
+    padding-top: 10px;
+    color: #333; 
+    padding: 10px; 
+  
+  }
+
+  .inner_nav_container a:nth-child(1){
+    grid-column: 2;
+    color: #333; 
+  }
+
+
+  .inner_nav_container a:nth-child(2){
+    grid-column: 13;
+    color: #333; 
+  }
+
+
+
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+  }
+ 
+
+ */
+
+
+ /************************************************************************************************************************************/
+
+ .navbar{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 1rem;
+  color: white;
+  width:100%
+ }
+
+ .navbar_title{
+  font-size: 1.5rem;
+  font-weight: bold;
+ }
+
+ .navbar_links{
+  list-style: none;
+  display: flex;
+  gap:5rem
+ }
+
+ .navbar-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar_searchbar {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+}
+
+.menu_button {
+  display: none; /* Hidden by default on larger screens */
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.menu_icon {
+  margin-right: 0.5rem;
+}
+
+/* Responsive Design for Mobile Screens */
+@media (max-width: 768px) {
+  .navbar_links {
+    display: none; /* Hide links on small screens */
+  }
+
+  .menu_button {
+    display: block; /* Show Menu button */
+  }
+}
+
+/* Hide Menu button on larger screens */
+@media (min-width: 769px) {
+  .menu_button {
+    display: none;
+  }
+}
+
