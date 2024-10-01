@@ -1,6 +1,7 @@
 import { fetchCommentByArticleId } from "../../api";
 import { useEffect, useState } from "react";
-import styles from "../css/CommentsCard.module.css";
+
+
 import PostComment from "./PostComment";
 import { deleteCommentByCommentId } from "../../api";
 
@@ -12,6 +13,7 @@ function CommentsCard({ article_id, username }) {
   const [isDeleting, setIsDeleting] = useState(false)
   const [commentId,setCommentId] = useState(0)
 
+ 
 
   useEffect(() => {
     fetchCommentByArticleId(article_id)
@@ -46,7 +48,7 @@ function CommentsCard({ article_id, username }) {
 
   if (isError) return <p>No comments yet...</p>;
   return (
-    <section key={`${article_id}-001`} className={styles.comment__card}>
+    <section >
       <PostComment
         username={username}
         article_id={article_id}
@@ -59,18 +61,18 @@ function CommentsCard({ article_id, username }) {
         const newDate = convertDate.toLocaleDateString("en-gb");
         return (
           <>
-          <section className={styles.single_comment_card}>  <p 
-              key={`${article_id}- ${comment.comment_id}`}
-              id={styles.comment__author}
-            ><span id={styles.author_text}> @{comment.author} commented on:{newDate}</span>
+          <section /* className={styles.single_comment_card} */>  <p 
+              
+              /* id={styles.comment__author } */
+            ><span /* id={styles.author_text} */> @{comment.author} commented on:{newDate}</span>
              
             </p>
          
-            <p key={comment.comment_id} className={styles.comment__body}>
+            <p key={comment.comment_id} /* className={styles.comment__body} */>
               {comment.body}{" "}
             </p>
             {comment.author===username && <button onClick={(event) =>{handleDelete(comment)}}>Remove comment</button>}
-            {isDeleting && commentId === comment.comment_id && <p id={styles.deleting_comment}>Deleting comment .....</p>}</section>
+            {isDeleting && commentId === comment.comment_id && <p  /* id={styles.deleting_comment} */> Deleting comment .....</p>}</section>
           
           </>
         );

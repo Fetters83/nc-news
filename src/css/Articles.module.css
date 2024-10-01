@@ -1,6 +1,28 @@
-.articlearea{
+.grid_container{
+    display: grid;
+    /* gap: 0.1rem; */
+    grid-template-columns: 1fr;
+    width: 100%;
+    
+}
 
-  
-    margin: 10em;
-    padding: 10%;
+@media screen and (min-width:620px) {
+    .grid_container{
+        grid-template-columns: 1fr 1fr;
+        
+    }
+}
+
+@media screen and (min-width:960px) {
+    .grid_container{
+        grid-template-columns: 1fr 1fr 1fr;
+     
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .grid_container{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        
+    }
 }

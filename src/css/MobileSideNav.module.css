@@ -1,0 +1,35 @@
+.sidenav {
+    height: 100%; /* 100% Full-height */
+   /*  width: 100%;  */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 5rem; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    max-width: 50%;
+  }
+
+  .sidenav h3{
+    padding: 1.5rem;
+    display: block;
+    color: var(--secondary);
+  }
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }

@@ -1,15 +1,16 @@
 import axios from "axios";
 
-function fetchAllArticles() {
+function fetchAllArticles(searchQueryObj) {
  
   return axios
-    .get(`https://be-backend-project-nc-news.onrender.com/api/articles`)
+    .get(`https://be-backend-project-nc-news.onrender.com/api/articles` ,{params:{topic:searchQueryObj.topic,sort_by:searchQueryObj.sort_by,order:searchQueryObj.order}} )
     .then(({ data }) => {
       return data;
     });
 }
 
 function fetchArticle(article_id) {
+  console.log(article_id)
   return axios
     .get(
       `https://be-backend-project-nc-news.onrender.com/api/articles/${article_id}`
@@ -29,14 +30,18 @@ function fetchCommentByArticleId(article_id) {
     });
 }
 
-function postVoteByArticleId(article_id, voteToPost) {
+function postVoteByArticleId(article_id, voteToPost,username) {
+  console.log(article_id,voteToPost,username)
   return axios
     .patch(
       `https://be-backend-project-nc-news.onrender.com/api/articles/${article_id}`,
-      { inc_votes: voteToPost }
+      { inc_votes: voteToPost,username:username }
     )
     .then(({ data: { updatedArticleVoteCount } }) => {
+      
       return updatedArticleVoteCount;
+    }).catch(err=>{
+      console.log(err)
     });
 }
 
@@ -59,20 +64,23 @@ function fetchTopics(){
 
   return axios
   .get(`https://be-backend-project-nc-news.onrender.com/api/topics`).then(({data:{topics}})=>{
+
      return topics
   })
 
 }
 
-
-function fetchAllArticlesByTopic(sortByQuery) {
-
-  return axios
-    .get(`https://be-backend-project-nc-news.onrender.com/api/articles?topic=${sortByQuery}`)
-    .then(({ data }) => {
-      return data;
-    });
+function fetchArticleVotesByUserId(username,article_id){
+   return axios
+  .post(`https://be-backend-project-nc-news.onrender.com/api/article_votes`,{username:username,article_id:article_id}).then(({data:{isInTable}})=>{
+    console.log(isInTable.msg)
+   return isInTable.msg
+  }).catch((err)=>{
+    console.log(err)
+  })
 }
+
+
 
 export {
   fetchAllArticles,
@@ -82,5 +90,5 @@ export {
   postCommentByArticleId,
   deleteCommentByCommentId,
   fetchTopics,
-  fetchAllArticlesByTopic
+  fetchArticleVotesByUserId
 };

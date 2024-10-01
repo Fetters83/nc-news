@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 import { postCommentByArticleId } from '../../api'
-import styles from '../css/PostComment.module.css'
+
 
 function PostComment({article_id,username,comments,setComments}){
 
@@ -16,6 +16,7 @@ function PostComment({article_id,username,comments,setComments}){
         if(isFormValid){
             const today = new Date().toDateString()
             const newResult = [...comments,{author:username,body:commentBody}]
+            console.log(newResult)
             setComments(newResult)
 
             postCommentByArticleId(article_id,username,commentBody).then((comment)=>{     
@@ -57,18 +58,15 @@ function PostComment({article_id,username,comments,setComments}){
    
   
     return (<section>
-        <br />
+     
         <form onSubmit={(event)=>{handleSubmit(event)}}>
             <label htmlFor="comment_box">Submit a comment....</label>
-            <br />
-            <br />
+        
             <textarea id="comment_box" rows='6' cols='68'></textarea>
-            <br />
-            <br />
-            {(isSubmittingBlankForm && <p className={styles.enter_valid_text_warning}>You must enter some valid text before you can submit anything.....</p> )}
+          
+            {(isSubmittingBlankForm && <p /* className={styles.enter_valid_text_warning} */>You must enter some valid text before you can submit anything.....</p> )}
             <button type='submit'>Submit</button>
-            <br />
-            <br />
+    
         </form>
     
         </section>)
