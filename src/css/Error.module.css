@@ -1,0 +1,14 @@
+.error{
+
+    margin:4rem;
+    padding:1rem;
+    text-align: center;
+    font-size: 1rem;
+
+}
+
+.error span a{
+    color: blue;
+    padding-left: 1rem;
+    text-decoration: underline;
+}

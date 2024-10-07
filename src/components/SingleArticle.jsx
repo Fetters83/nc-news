@@ -4,25 +4,33 @@ import { useParams } from "react-router-dom";
 import CommentsCard from "./CommentsCard";
 import Vote from "./Vote";
 import styles from '../css/SingleArticle.module.css'
+import Error from "./Error";
+import Loader from "./Loader";
 
 
 
-function SingleArticle({username}) {
+function SingleArticle({username,mobileSideNav,location,setUrlPath}) {
   const [singleArticle, setSingleArticle] = useState({});
- const [isLoading, setIsLoading] = useState(true); 
+ 
   const { article_id } = useParams();
+  const [error,SetError] = useState(null)
+  const [isLoading,setIsLoading] = useState(true)
   
  
   
 
   useEffect(
     () => {
-      fetchArticle(article_id).then(({ articles }) => {
+      fetchArticle(article_id).then(({ articles }) => {     
         setSingleArticle(articles[0]);
-         setIsLoading(false); 
-      });
+        setIsLoading(false)
+        setUrlPath(location.pathname)
+      }).catch(({msg})=>{
+        setIsLoading(false)
+        SetError(msg)
+      })
     },
-    [ isLoading] ,
+    [article_id,mobileSideNav] ,
     
   );
 
@@ -32,7 +40,8 @@ function SingleArticle({username}) {
   const convertDate = new Date(singleArticle.created_at);
   const newDate = convertDate.toLocaleDateString("en-gb");
 
-  if (isLoading) return <p>Loading...</p>; 
+  if(isLoading) return <Loader/>
+  if(error) return <Error message={error}/>
   return (
 
       <section className={styles.single_article_container} >

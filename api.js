@@ -6,18 +6,21 @@ function fetchAllArticles(searchQueryObj) {
     .get(`https://be-backend-project-nc-news.onrender.com/api/articles` ,{params:{topic:searchQueryObj.topic,sort_by:searchQueryObj.sort_by,order:searchQueryObj.order}} )
     .then(({ data }) => {
       return data;
+    }).catch((err)=>{
+      return Promise.reject({msg:err.response.data.msg})
     });
 }
 
 function fetchArticle(article_id) {
-  console.log(article_id)
   return axios
     .get(
       `https://be-backend-project-nc-news.onrender.com/api/articles/${article_id}`
     )
     .then(({ data }) => {
-      return data;
-    });
+           return data;
+    }).catch((err)=>{
+      return Promise.reject({msg:err.response.data.msg})
+        });
 }
 
 function fetchCommentByArticleId(article_id) {
@@ -73,10 +76,7 @@ function fetchTopics(){
 function fetchArticleVotesByUserId(username,article_id){
    return axios
   .post(`https://be-backend-project-nc-news.onrender.com/api/article_votes`,{username:username,article_id:article_id}).then(({data:{isInTable}})=>{
-    console.log(isInTable.msg)
-   return isInTable.msg
-  }).catch((err)=>{
-    console.log(err)
+    return isInTable.msg
   })
 }
 

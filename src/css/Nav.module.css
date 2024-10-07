@@ -1,7 +1,6 @@
 .navbar {
   display: flex;
-  align-items: center; 
-  justify-content:space-evenly;
+  justify-content:space-around;
   background-color: #333;
   padding: 1rem;
   color: white;
@@ -11,14 +10,16 @@
 }
 
 .navbar_title {
-  text-align: left;
+  font-size: 1.5rem;
   font-weight: bold;
+ 
 }
 
 .navbar_links {
   list-style: none;
   gap: 1rem;
   display: none;
+  font-weight: bold;
 }
 
 .navbar-links li a {
@@ -50,6 +51,7 @@
     width:auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 20;
+    cursor: pointer;
    
   }
 
@@ -65,7 +67,7 @@
   }
 
   .mobile_menu_button {
-    display: flex; /* Hidden by default on larger screens */
+    display: flex; 
     background-color: #444;
     color: white;
     border: none;
@@ -81,4 +83,5 @@
     .mobile_menu_button{
         display: none;
     }
+  
   }

@@ -1,76 +1,50 @@
 import {useState,useEffect} from 'react'
 import { postCommentByArticleId } from '../../api'
+import styles from '../css/PostComment.module.css'
 
+function PostComment({onPost,username}){
 
-function PostComment({article_id,username,comments,setComments}){
-
-    const [commentBody,setCommentBody] = useState('')
-    const [isFormValid,setIsFormValid] = useState(false)
-    const [isSubmittingBlankForm, setIsSubmittingBlankForm] = useState(false)
-
-   
-
-    useEffect(()=>{
-
-
-        if(isFormValid){
-            const today = new Date().toDateString()
-            const newResult = [...comments,{author:username,body:commentBody}]
-            console.log(newResult)
-            setComments(newResult)
-
-            postCommentByArticleId(article_id,username,commentBody).then((comment)=>{     
-                setIsFormValid(false)
-                setIsSubmittingBlankForm(false)
-                alert('Your comment has been posted!') 
-
-            }).catch(()=>{
-                    alert('Please check you are entering valid text in your comment, then try again..')
-            })
-        }
-    },[isFormValid],[isSubmittingBlankForm])
+   const [commentBody,setCommentBody] = useState('') 
+   const [isFormValid,setIsFormValid] = useState(false)
 
     function handleSubmit(event){
-       event.preventDefault()
- 
-       setCommentBody(event.target[0].value)
-       checkFormValidity(event.target[0].value)
-       event.target[0].value = ''  
+        event.preventDefault();
+        checkFormValidity(commentBody)
+        if(isFormValid){
+            const newComment = {
+                comment_id:Date.now(),
+                created_at:Date.now(),
+                author: username,
+                body:commentBody
+            }
+            onPost(newComment);
+            setCommentBody('');
+            setIsFormValid(false)
+        } 
+
     }
 
-    function checkFormValidity(newComment){
-
-   
-
-        if(newComment.length>0){
-
-      
+    function checkFormValidity(comment){
+        if(comment.length>0){
             setIsFormValid(true)
-            setIsSubmittingBlankForm(false)
-            
-
-        } else {
-            setIsSubmittingBlankForm(true)
+        } else{
+            setIsFormValid(false)
+            alert('You can not leave the comments box blank!')
         }
-      
-
     }
-   
-  
-    return (<section>
-     
-        <form onSubmit={(event)=>{handleSubmit(event)}}>
-            <label htmlFor="comment_box">Submit a comment....</label>
-        
-            <textarea id="comment_box" rows='6' cols='68'></textarea>
-          
-            {(isSubmittingBlankForm && <p /* className={styles.enter_valid_text_warning} */>You must enter some valid text before you can submit anything.....</p> )}
-            <button type='submit'>Submit</button>
-    
-        </form>
-    
-        </section>)
 
+
+    return(
+        <>
+        <section>
+
+        </section>
+        <form onSubmit={handleSubmit}>
+            <textarea className={styles.textbox}value={commentBody} placeholder="Add a comment..." onChange={(event)=>{setCommentBody(event.target.value);checkFormValidity(event.target.value)}} ></textarea>
+            <button className={styles.submitbtn} type='submit'>Submit</button>
+        </form>
+        </>
+    )
 
 }
 
