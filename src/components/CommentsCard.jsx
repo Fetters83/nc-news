@@ -1,84 +1,58 @@
-import { fetchCommentByArticleId } from "../../api";
+import { fetchCommentByArticleId, postCommentByArticleId } from "../../api";
 import { useEffect, useState } from "react";
-
-
 import PostComment from "./PostComment";
-import { deleteCommentByCommentId } from "../../api";
+import styles from '../css/CommentsCard.module.css'
 
 
+function CommentsCard({article_id,username}){
 
-function CommentsCard({ article_id, username }) {
-  const [comments, setComments] = useState([]);
-  const [isError, setIsError] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [commentId,setCommentId] = useState(0)
+    const[comments,setComments] = useState([]);
+    const[isComments,setIsComments] = useState(true);
+    
 
- 
+    useEffect(()=>{
+             fetchCommentByArticleId(article_id).then((comments)=>{
+            setComments(comments)
+        }).catch(()=>{
+            setIsComments(false)
+        })
+    },[article_id])
 
-  useEffect(() => {
-    fetchCommentByArticleId(article_id)
-      .then((comments) => {
-        setComments(comments);
-      })
-      .catch(() => {
-        setIsError(true);
-      });
+   
 
- 
-  }, [comments]);
-
-  useEffect(()=>{
-
-      if(isDeleting){
-      deleteCommentByCommentId(commentId).then(()=>{
-       setIsDeleting(false)
-
-      })
+    function handleNewComment(newComment){
+        setComments((prevComments)=>[newComment,...prevComments])
+        postCommentByArticleId(article_id,username,newComment.body)
     }
 
-  },[commentId])
+    return(
+        <>
+          <PostComment onPost={handleNewComment} username={username}/>
+          {!isComments && <p>No comments yet....</p>}
+          <section className={styles.grid_container}>
+            
+          {comments.map((comment)=>{
+             const convertDate = new Date(comment.created_at);
+              const newDate = convertDate.toLocaleDateString("en-gb");
+            return(
+               
+                <section key={comment.comment_id} className={styles.comment_container}>
+                    <p className={styles.comment_body}>{comment.body}</p>
+                    <p className={styles.comment_info}> @{comment.author} - {newDate}</p>    
+                </section>
+               
+            )
+          })}
+          </section>
+        
+        </>
+      
+    )
+
+  
 
 
 
-  function handleDelete(event){
-    setIsDeleting(true)
-    setCommentId(event.comment_id)
-
-  }
-
-  if (isError) return <p>No comments yet...</p>;
-  return (
-    <section >
-      <PostComment
-        username={username}
-        article_id={article_id}
-        comments={comments}
-        setComments={setComments}
-       
-      />
-      {comments.map((comment) => {
-        const convertDate = new Date(comment.created_at);
-        const newDate = convertDate.toLocaleDateString("en-gb");
-        return (
-          <>
-          <section /* className={styles.single_comment_card} */>  <p 
-              
-              /* id={styles.comment__author } */
-            ><span /* id={styles.author_text} */> @{comment.author} commented on:{newDate}</span>
-             
-            </p>
-         
-            <p key={comment.comment_id} /* className={styles.comment__body} */>
-              {comment.body}{" "}
-            </p>
-            {comment.author===username && <button onClick={(event) =>{handleDelete(comment)}}>Remove comment</button>}
-            {isDeleting && commentId === comment.comment_id && <p  /* id={styles.deleting_comment} */> Deleting comment .....</p>}</section>
-          
-          </>
-        );
-      })}
-    </section>
-  );
 }
 
-export default CommentsCard;
+export default CommentsCard

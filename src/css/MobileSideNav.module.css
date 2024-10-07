@@ -10,15 +10,17 @@
     padding-top: 5rem; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     max-width: 50%;
+    overflow-y: hidden;
   }
 
   .sidenav h3{
-    padding: 1.5rem;
+    padding: 0.5rem 0.5rem;
     display: block;
     color: var(--secondary);
   }
   .sidenav a {
-    padding: 8px 8px 8px 32px;
+    /* padding: 8px 8px 8px 32px; */
+    padding:0.5rem 0.5rem 0.5rem 2rem; 
     text-decoration: none;
     font-size: 1.1rem;
     color: #818181;
@@ -30,6 +32,7 @@
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+    font-size: 1.5rem;
+    margin-left: 4.1rem;
+   
   }

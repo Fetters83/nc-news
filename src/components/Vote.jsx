@@ -46,7 +46,7 @@ function handleVoteChange(){
 return(
   
     <section className={styles.vote_container}>
-      <p> {console.log(voteCount)}
+      <p> 
               <span >votes </span>
               <span >{voteCount}</span>
             </p>

@@ -1,0 +1,55 @@
+.grid_container{
+display: grid;
+grid-template-columns: 1fr;
+gap:0.1rem;
+
+}
+
+.comment_container{
+    width:100%;
+    max-width: 90%;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgb(243, 238, 238);
+    border:solid 0.5px  rgb(243, 238, 238);
+    border-radius: 1rem;
+}
+
+.comment_body{
+    padding-top:0.3rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+.comment_info{
+    padding-top:0.1rem;
+    padding-left: 1rem;
+    font-size: 0.75rem;
+}
+
+
+
+@media screen and (min-width:960px) {
+    
+  .comment_container{
+    max-width: 80%;
+  }
+   
+}
+
+@media screen and (min-width:1200px) {
+   
+    .comment_container{
+        max-width: 70%;
+      }
+  
+}
+
+@media screen and (min-width:1920px) {
+   
+    .comment_container{
+        max-width: 60%;
+      }
+ 
+}

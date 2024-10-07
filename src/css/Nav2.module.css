@@ -1,0 +1,24 @@
+.nav_container{
+    list-style-type: none;
+    background-color: black;
+    overflow: hidden;
+    display: block;
+    
+
+}
+
+.title{
+    color: white;
+    float: left;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 2rem;
+}
+.links{
+    float: right;
+    padding-right: 7rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
